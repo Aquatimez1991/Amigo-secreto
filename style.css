@@ -95,10 +95,11 @@ body {
     margin-top: 20px; 
 }
 
-/* Estilos para el botón de reiniciar */
+/* Estilo general del botón */
 .button-restart {
     display: flex;
     align-items: center;
+    width: 100%;
     padding: 10px 35px;
     color: var(--color-white);
     background-color: var(--color-primary); 
@@ -107,10 +108,15 @@ body {
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center; 
-    white-space: nowrap; 
 }
 
+/* Estilo para el botón deshabilitado */
+.button-restart:disabled {
+    background-color: #cccccc;  
+    color: #777777;             
+    border: 2px solid #999999;  
+    cursor: not-allowed;        
+}
 
 .button-restart img {
     margin-right: 10px;
@@ -118,6 +124,22 @@ body {
 
 .button-restart:hover {
     background-color: #3a4ccd; 
+}
+
+/* Estilos para el botón habilitado */
+.button-restart.habilitado {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 2px solid #000;
+    cursor: pointer;
+}
+
+/* Estilos para el botón deshabilitado */
+.button-restart.deshabilitado {
+    background-color: #cccccc;  
+    color: #777777;             
+    border: 2px solid #999999;  
+    cursor: not-allowed;       
 }
 
 /* Estilos de entrada de texto */

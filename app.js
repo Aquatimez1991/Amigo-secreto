@@ -26,8 +26,8 @@ function agregarAmigo() {
     // Formatear el nombre
     const nombreFormateado = formatearNombre(nombre);
 
-      // Validar que el nombre no esté duplicado (ya formateado)
-      if (listaAmigos.includes(nombreFormateado)) {
+    // Validar que el nombre no esté duplicado (ya formateado)
+    if (listaAmigos.includes(nombreFormateado)) {
         alert('Este nombre ya ha sido agregado. Ingresa un nombre diferente.');
         input.value = '';
         return;
@@ -39,6 +39,13 @@ function agregarAmigo() {
 
     // Actualizar la lista visible en pantalla
     actualizarLista();
+
+    // Si hay más de un nombre, habilitar el botón de "Reiniciar"
+    if (listaAmigos.length > 1) {
+        aplicarEstilosBotonReiniciar(true);
+    } else {
+        aplicarEstilosBotonReiniciar(false);
+    }
 }
 
 // Función para mostrar la lista de amigos en la página
@@ -53,6 +60,7 @@ function actualizarLista() {
         ulListaAmigos.appendChild(li);
     });
 }
+
 // Función para realizar el sorteo del amigo secreto
 function sortearAmigo() {
     if (listaAmigos.length === 0) {
@@ -67,6 +75,19 @@ function sortearAmigo() {
     // Mostrar el resultado en la página
     const ulResultado = document.getElementById('resultado');
     ulResultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSecreto}</strong></li>`;
+
+    // Lanzar el confeti
+    lanzarConfeti();
+}
+
+// Función para lanzar el confeti
+function lanzarConfeti() {
+    confetti({
+        particleCount: 100, 
+        spread: 70, 
+        origin: { y: 0.6 }, 
+        colors: ['#ff4e00', '#ff7d3c', '#ffbb5a', '#ffea8a'], 
+    });
 }
 
 // Función para reiniciar la lista y limpiar la pantalla
@@ -74,4 +95,24 @@ function reiniciarLista() {
     listaAmigos = [];
     document.getElementById('listaAmigos').innerHTML = '';
     document.getElementById('resultado').innerHTML = '';
+
+    // Deshabilitar el botón de reiniciar y aplicar los estilos deshabilitados
+    aplicarEstilosBotonReiniciar(false);
+}
+
+// Función para aplicar o restaurar los estilos del botón de reiniciar
+function aplicarEstilosBotonReiniciar(habilitado) {
+    const botonReiniciar = document.querySelector('.button-restart');
+    
+    // Limpiar las clases existentes
+    botonReiniciar.classList.remove('habilitado', 'deshabilitado');
+
+    // Agregar la clase correspondiente dependiendo del estado
+    if (habilitado) {
+        botonReiniciar.classList.add('habilitado');
+        botonReiniciar.disabled = false;
+    } else {
+        botonReiniciar.classList.add('deshabilitado');
+        botonReiniciar.disabled = true;
+    }
 }

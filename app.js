@@ -46,3 +46,18 @@ function actualizarLista() {
         ulListaAmigos.appendChild(li);
     });
 }
+// Función para realizar el sorteo del amigo secreto
+function sortearAmigo() {
+    if (listaAmigos.length === 0) {
+        alert('La lista de amigos está vacía. Agrega nombres antes de sortear.');
+        return;
+    }
+
+    // Seleccionar un nombre aleatorio
+    const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
+    const amigoSecreto = listaAmigos[indiceAleatorio];
+
+    // Mostrar el resultado en la página
+    const ulResultado = document.getElementById('resultado');
+    ulResultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSecreto}</strong></li>`;
+}

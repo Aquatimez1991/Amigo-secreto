@@ -28,6 +28,7 @@ body {
     flex-direction: column;
     height: 100%;
     width: 100%;
+    max-width: 1200px; 
 }
 
 /* Banner */
@@ -89,10 +90,10 @@ body {
 
 .button-container {
     display: flex;
-    gap: 20px; 
-    justify-content: center; 
-    align-items: center; 
-    margin-top: 20px; 
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 /* Estilo general del botón */
@@ -102,7 +103,7 @@ body {
     width: 100%;
     padding: 10px 35px;
     color: var(--color-white);
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary);
     font-size: 16px;
     border: 2px solid #000;
     border-radius: 25px;
@@ -110,20 +111,20 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilo para el botón deshabilitado */
-.button-restart:disabled {
-    background-color: #cccccc;  
-    color: #777777;             
-    border: 2px solid #999999;  
-    cursor: not-allowed;        
-}
-
 .button-restart img {
     margin-right: 10px;
 }
 
 .button-restart:hover {
-    background-color: #3a4ccd; 
+    background-color: #3a4ccd;
+}
+
+/* Estilo para el botón deshabilitado */
+.button-restart:disabled {
+    background-color: #cccccc;
+    color: #777777;
+    border: 2px solid #999999;
+    cursor: not-allowed;
 }
 
 /* Estilos para el botón habilitado */
@@ -136,10 +137,10 @@ body {
 
 /* Estilos para el botón deshabilitado */
 .button-restart.deshabilitado {
-    background-color: #cccccc;  
-    color: #777777;             
-    border: 2px solid #999999;  
-    cursor: not-allowed;       
+    background-color: #cccccc;
+    color: #777777;
+    border: 2px solid #999999;
+    cursor: not-allowed;
 }
 
 /* Estilos de entrada de texto */
@@ -204,8 +205,8 @@ ul {
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    text-align: center; 
-    white-space: nowrap; 
+    text-align: center;
+    white-space: nowrap;
 }
 
 .button-draw img {
@@ -216,5 +217,62 @@ ul {
     background-color: var(--color-button-hover);
 }
 
+/* Media Queries para responsividad */
 
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .main-content {
+        width: 100%;
+        padding: 10px;
+    }
 
+    .header-banner {
+        flex: 100%;
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 24px;
+    }
+
+    .input-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-name {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button-restart {
+        width: 100%;
+        padding: 15px 35px;
+    }
+
+    .button-draw {
+        width: 100%;
+        padding: 15px 35px;
+    }
+}
+
+/* Para pantallas medianas (tabletas) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .main-content {
+        width: 90%;
+    }
+
+    .input-wrapper {
+        max-width: 80%;
+    }
+}

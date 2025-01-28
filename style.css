@@ -89,33 +89,35 @@ body {
 
 .button-container {
     display: flex;
-    gap: 10px; /* Espaciado entre los botones */
-    justify-content: center; /* Centrar los botones horizontalmente */
-    align-items: center; /* Alinear verticalmente */
-    margin-top: 20px; /* Separar los botones del contenido superior */
+    gap: 20px; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
 }
 
 /* Estilos para el botón de reiniciar */
 .button-restart {
     display: flex;
     align-items: center;
-    width: 100%;
-    padding: 10px 40px;
+    padding: 10px 35px;
     color: var(--color-white);
-    background-color: var(--color-primary); /* Puedes cambiar el color según el diseño */
+    background-color: var(--color-primary); 
     font-size: 16px;
     border: 2px solid #000;
     border-radius: 25px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center; 
+    white-space: nowrap; 
 }
+
 
 .button-restart img {
     margin-right: 10px;
 }
 
 .button-restart:hover {
-    background-color: #3a4ccd; /* Color al pasar el cursor */
+    background-color: #3a4ccd; 
 }
 
 /* Estilos de entrada de texto */
@@ -172,17 +174,25 @@ ul {
 .button-draw {
     display: flex;
     align-items: center;
-    width: 100%;
     padding: 10px 40px;
     color: var(--color-white);
     background-color: var(--color-button);
     font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center; 
+    white-space: nowrap; 
 }
 
 .button-draw img {
-    margin-right: 40px;
+    margin-right: 10px;
 }
 
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+
+
+

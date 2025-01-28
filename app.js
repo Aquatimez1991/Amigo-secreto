@@ -26,6 +26,13 @@ function agregarAmigo() {
     // Formatear el nombre
     const nombreFormateado = formatearNombre(nombre);
 
+      // Validar que el nombre no esté duplicado (ya formateado)
+      if (listaAmigos.includes(nombreFormateado)) {
+        alert('Este nombre ya ha sido agregado. Ingresa un nombre diferente.');
+        input.value = '';
+        return;
+    }
+
     // Agregar el nombre al array y limpiar el campo de texto
     listaAmigos.push(nombreFormateado);
     input.value = '';

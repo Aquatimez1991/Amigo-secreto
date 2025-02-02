@@ -35,10 +35,12 @@ body {
 .header-banner {
     flex: 40%;
     display: flex;
+    flex-direction: column-reverse; 
     justify-content: center;
     align-items: center;
     padding: 40px 0 0;
 }
+
 
 /* Sección de entrada */
 .input-section {
@@ -227,8 +229,10 @@ ul {
     }
 
     .header-banner {
-        flex: 100%;
-        padding: 20px;
+        display: flex; 
+        flex-direction: column-reverse; 
+        align-items: center;
+        justify-content: center;
     }
 
     .main-title {

@@ -1,6 +1,12 @@
 // Array para almacenar los nombres de los amigos
 let listaAmigos = [];
 
+// Enfocar el input al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('amigo');
+    input.focus(); // Enfocar el input al cargar la página
+});
+
 // Función para formatear el nombre (primera letra en mayúscula, el resto en minúscula)
 function formatearNombre(nombre) {
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
@@ -37,6 +43,9 @@ function agregarAmigo() {
     listaAmigos.push(nombreFormateado);
     input.value = '';
 
+    // Enfocar el input automáticamente después de agregar un amigo
+    input.focus();
+
     // Actualizar la lista visible en pantalla
     actualizarLista();
 
@@ -61,19 +70,29 @@ function actualizarLista() {
     });
 }
 
+// Función para validar diferente de 0 amigos y menor a 2
+function validarListaAmigos() {
+    if (listaAmigos.length < 2) {
+        alert(listaAmigos.length === 0 
+            ? 'La lista de amigos está vacía. Agrega nombres antes de sortear.' 
+            : 'Debe haber al menos dos amigos para realizar el sorteo.'
+        );
+    // Enfocar el input después de validar
+    const input = document.getElementById('amigo');
+    input.focus();
+        return false; // Indica que la validación falló
+    }
+    return true; // Indica que la validación fue exitosa
+}
+
 // Función para realizar el sorteo del amigo secreto
 function sortearAmigo() {
-    if (listaAmigos.length === 0) {
-        alert('La lista de amigos está vacía. Agrega nombres antes de sortear.');
+    // Validación
+    if (!validarListaAmigos()) {
         return;
     }
 
-    if (listaAmigos.length < 2) {
-        alert('Debe haber al menos dos amigos para realizar el sorteo.');
-        return;
-    }
-
-    // Seleccionar un nombre aleatorio
+    // Lógica del sorteo
     const indiceAleatorio = Math.floor(Math.random() * listaAmigos.length);
     const amigoSecreto = listaAmigos[indiceAleatorio];
 
@@ -83,6 +102,10 @@ function sortearAmigo() {
 
     // Lanzar el confeti
     lanzarConfeti();
+
+    // Enfocar el input después de sortear
+    const input = document.getElementById('amigo');
+    input.focus();
 }
 
 // Función para lanzar el confeti
@@ -103,6 +126,10 @@ function reiniciarLista() {
 
     // Deshabilitar el botón de reiniciar y aplicar los estilos deshabilitados
     aplicarEstilosBotonReiniciar(false);
+
+    // Enfocar el input después de reiniciar
+    const input = document.getElementById('amigo');
+    input.focus();
 }
 
 // Función para aplicar o restaurar los estilos del botón de reiniciar

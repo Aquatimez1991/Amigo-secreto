@@ -12,21 +12,25 @@ function formatearNombre(nombre) {
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
 }
 
+// Función para validar el nombre
+function validarNombre(nombre) {
+    const soloLetras = /^[A-Za-z]+$/;
+
+    return !nombre.trim() 
+        ? (mostrarAlertaPersonalizada('Por favor, ingresa un nombre válido.'), false) 
+        : !soloLetras.test(nombre) 
+            ? (mostrarAlertaPersonalizada('Por favor, ingresa solo letras en el nombre.'), false) 
+            : true;
+}
+
 // Función para agregar un amigo a la lista
 function agregarAmigo() {
     const input = document.getElementById('amigo');
     const nombre = input.value.trim(); // Eliminar espacios en blanco al inicio y final
 
-    // Validar que el campo no esté vacío y que contenga solo letras
-    if (!nombre.trim()) {
-        alert('Por favor, ingresa un nombre válido.');
-        return;
-    }
-
-    const soloLetras = /^[A-Za-z]+$/;
-    if (!soloLetras.test(nombre)) {
-        alert('Por favor, ingresa solo letras en el nombre.');
-        return;
+    // Validar el nombre
+    if (!validarNombre(nombre)) {
+        return; // Detener la ejecución si la validación falla
     }
 
     // Formatear el nombre
@@ -34,7 +38,7 @@ function agregarAmigo() {
 
     // Validar que el nombre no esté duplicado (ya formateado)
     if (listaAmigos.includes(nombreFormateado)) {
-        alert('Este nombre ya ha sido agregado. Ingresa un nombre diferente.');
+        mostrarAlertaPersonalizada('Este nombre ya ha sido agregado. Ingresa un nombre diferente.');
         input.value = '';
         return;
     }
@@ -73,7 +77,7 @@ function actualizarLista() {
 // Función para validar diferente de 0 amigos y menor a 2
 function validarListaAmigos() {
     if (listaAmigos.length < 2) {
-        alert(listaAmigos.length === 0 
+        mostrarAlertaPersonalizada(listaAmigos.length === 0 
             ? 'La lista de amigos está vacía. Agrega nombres antes de sortear.' 
             : 'Debe haber al menos dos amigos para realizar el sorteo.'
         );
@@ -127,6 +131,9 @@ function reiniciarLista() {
     // Deshabilitar el botón de reiniciar y aplicar los estilos deshabilitados
     aplicarEstilosBotonReiniciar(false);
 
+    // Mensaje después de reiniciar
+    mostrarAlertaPersonalizada('Sorteo reiniciado!');
+
     // Enfocar el input después de reiniciar
     const input = document.getElementById('amigo');
     input.focus();
@@ -147,4 +154,15 @@ function aplicarEstilosBotonReiniciar(habilitado) {
         botonReiniciar.classList.add('deshabilitado');
         botonReiniciar.disabled = true;
     }
+}
+
+function mostrarAlertaPersonalizada(mensaje) {
+    const customAlert = document.getElementById('customAlert');
+    customAlert.textContent = mensaje;
+    customAlert.style.display = 'block';
+
+    // Ocultar el mensaje después de 5 segundos
+    setTimeout(() => {
+        customAlert.style.display = 'none';
+    }, 5000); // 5000 milisegundos = 5 segundos
 }
